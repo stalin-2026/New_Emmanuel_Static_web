@@ -386,37 +386,85 @@ nav {
 .scroll-btn.right { right: -10px; }
 
 /* Top Brands - Auto Scroll */
-.top-brands { background: var(--warm-white); padding: 5rem 2rem; overflow: hidden; }
+
+/* Brands section */
+.top-brands {
+  overflow: hidden;
+}
+
+/* Hide overflow to create the scrolling effect */
 .brands-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
+
+/* Smooth, GPU-friendly animation */
 .brands-track {
-    display: flex;
-    align-items: center;
-    gap: 4.5rem;
-    animation: scroll 28s linear infinite;
-    width: max-content;
-    padding: 1rem 0;
+  display: flex;
+  width: max-content;
+  gap: 40px;
+  animation: brands-scroll 30s linear infinite;
+  will-change: transform;
 }
+
+/* Brand logo container */
 .brand-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    flex-shrink: 0;
+  flex: 0 0 140px;
+  width: 140px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* Brand logos */
 .brand-item img {
-    height: 100%;
-    width: auto;
-    max-width: 140px;
-    object-fit: contain;
-    display: block;
+  display: block;
+  width: 140px;
+  height: 80px;
+  object-fit: contain;
 }
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+
+/* Continuous scrolling */
+@keyframes brands-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(
+      calc(-50% - 20px),
+      0,
+      0
+    );
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .brands-track {
+    gap: 24px;
+    animation-duration: 35s;
+  }
+
+  .brand-item {
+    flex-basis: 110px;
+    width: 110px;
+    height: 65px;
+  }
+
+  .brand-item img {
+    width: 110px;
+    height: 65px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .brands-track {
+    animation-play-state: paused;
+  }
 }
 
 /* About Us */
